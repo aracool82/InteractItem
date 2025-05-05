@@ -44,8 +44,6 @@ namespace _Project14_15.Scripts
 
 
         private void Fly()
-        {
-            transform.position += _direction * (_speed * Time.deltaTime);
-        }
+            => transform.position += _direction * (_speed * Time.deltaTime);
     }
 }
