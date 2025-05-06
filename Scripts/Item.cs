@@ -4,11 +4,18 @@ namespace _Project14_15.Scripts
 {
     public abstract class Item : MonoBehaviour
     {
+        [SerializeField]
+        protected ParticleSystem _particleEffect;
+        
         public abstract void Use(Character character);
         
-        protected abstract void StartEffect();
+        protected  void StartEffect(Vector3 position)
+        {
+            _particleEffect.transform.position = position;
+            _particleEffect.Play();
+        }
         
-        protected void DeleteItem()
+        protected void DesroyItem()
             => Destroy(gameObject);
 
     }

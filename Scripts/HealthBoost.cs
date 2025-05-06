@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace _Project14_15.Scripts
 {
@@ -9,13 +10,8 @@ namespace _Project14_15.Scripts
         public override void Use(Character character)
         {
             character.AddHealth(_health);
-            StartEffect();
-            DeleteItem();
-        }
-
-        protected override void StartEffect()
-        {
-            Debug.Log("Health boost effect start");
+            StartEffect(character.transform.position);
+            DesroyItem();
         }
     }
 }

@@ -5,8 +5,7 @@ namespace _Project14_15.Scripts
     public class Bullet : Item
     {
         [SerializeField] private float _speed;
-        [SerializeField] private float _timeToDelete;
-        [SerializeField] private ParticleSystem _particle;
+        [SerializeField] private float _timeToDestroy;
 
         private Vector3 _direction;
         private bool _canFly;
@@ -19,8 +18,12 @@ namespace _Project14_15.Scripts
 
             _timerCounter += Time.deltaTime;
 
-            if (_timerCounter >= _timeToDelete)
-                DeleteItem();
+            if (_timerCounter >= _timeToDestroy)
+            {
+                _particleEffect.Stop();
+                _particleEffect.transform.SetParent(null);
+                DesroyItem();
+            }
 
             Fly();
         }
@@ -30,18 +33,14 @@ namespace _Project14_15.Scripts
             if (transform.IsChildOf(character.transform))
             {
                 _direction = character.transform.forward;
+                
                 transform.SetParent(null);
                 _canFly = true;
-                StartEffect();
+               _particleEffect.transform.SetParent(transform);
+                
+                StartEffect(transform.position);
             }
         }
-
-        protected override void StartEffect()
-        {
-            _particle.transform.position = transform.position;
-            _particle.Play();
-        }
-
 
         private void Fly()
             => transform.position += _direction * (_speed * Time.deltaTime);

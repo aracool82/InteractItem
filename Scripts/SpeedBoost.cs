@@ -9,13 +9,8 @@ namespace _Project14_15.Scripts
         public override void Use(Character character)
         {
             character.AddSpeed(_speed);
-            StartEffect();
-            DeleteItem();
-        }
-
-        protected override void StartEffect()
-        {
-            Debug.Log("SpeedBoost start");
+            StartEffect(character.transform.position);
+            DesroyItem();
         }
     }
 }

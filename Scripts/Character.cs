@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace _Project14_15.Scripts
 {
-    [RequireComponent(typeof(Rigidbody), typeof(BoxCollider))]
+    [RequireComponent(typeof(Rigidbody), typeof(BoxCollider), typeof(ItemCollector))]
     public class Character : MonoBehaviour
     {
         [SerializeField] private Item _item;
@@ -10,13 +10,6 @@ namespace _Project14_15.Scripts
         [SerializeField] private float _speed;
 
         [SerializeField] private Transform _alignmentTransform;
-
-        private void OnCollisionEnter(Collision other)
-        {
-            if (other.collider.TryGetComponent(out Item item))
-                if (CanTakeItem())
-                    TakeItem(item);
-        }
 
         public void Move(Vector3 direction)
         {
@@ -40,8 +33,14 @@ namespace _Project14_15.Scripts
         public void AddSpeed(float speed)
         => _speed += speed;
 
-        private void TakeItem(Item item)
+        public void TakeItem(Item item)
         {
+            if (item == null)
+            {
+                Debug.LogError("can`t take item. Item is null");
+                return;
+            }
+
             _item = item;
             AlignmentItem(item);
         }
@@ -50,15 +49,10 @@ namespace _Project14_15.Scripts
         {
             item.GetComponent<Collider>().enabled = false;
             item.transform.SetParent(transform);
-
-            float offsetZ = item.transform.localScale.z / 2;
-            Vector3 offsetVector = new Vector3(0, 0, offsetZ);
-
-            item.transform.position = _alignmentTransform.position + offsetVector;
-            item.transform.rotation = _alignmentTransform.rotation;
+            item.transform.position = _alignmentTransform.position ;
         }
 
-        private bool CanTakeItem()
+        public bool CanTakeItem()
             => _item == null;
     }
 }
