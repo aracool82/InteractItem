@@ -20,8 +20,8 @@ namespace _Project14_15.Scripts
 
             if (_timerCounter >= _timeToDestroy)
             {
-                _particleEffect.Stop();
-                _particleEffect.transform.SetParent(null);
+                ParticleEffect.Stop();
+                ParticleEffect.transform.SetParent(null);
                 DesroyItem();
             }
 
@@ -36,7 +36,7 @@ namespace _Project14_15.Scripts
                 
                 transform.SetParent(null);
                 _canFly = true;
-               _particleEffect.transform.SetParent(transform);
+                ParticleEffect.transform.SetParent(transform);
                 
                 StartEffect(transform.position);
             }
