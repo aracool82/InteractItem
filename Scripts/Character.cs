@@ -3,6 +3,7 @@ using UnityEngine;
 namespace _Project14_15.Scripts
 {
     [RequireComponent(typeof(Rigidbody), typeof(BoxCollider), typeof(ItemCollector))]
+    
     public class Character : MonoBehaviour
     {
         [SerializeField] private Item _item;
@@ -44,6 +45,9 @@ namespace _Project14_15.Scripts
             _item = item;
             AlignmentItem(item);
         }
+        
+        public bool CanTakeItem()
+            => _item == null;
 
         private void AlignmentItem(Item item)
         {
@@ -51,8 +55,5 @@ namespace _Project14_15.Scripts
             item.transform.SetParent(transform);
             item.transform.position = _alignmentTransform.position ;
         }
-
-        public bool CanTakeItem()
-            => _item == null;
     }
 }
