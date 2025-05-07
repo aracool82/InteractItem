@@ -7,7 +7,7 @@ namespace _Project14_15.Scripts
         [SerializeField]
         protected ParticleSystem ParticleEffect;
         
-        public abstract void Use(Character character);
+        public abstract void Use(GameObject character);
         
         protected  void StartEffect(Vector3 position)
         {
@@ -15,7 +15,7 @@ namespace _Project14_15.Scripts
             ParticleEffect.Play();
         }
         
-        protected void DesroyItem()
+        protected void Desroy()
             => Destroy(gameObject);
 
     }

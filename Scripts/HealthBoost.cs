@@ -5,13 +5,14 @@ namespace _Project14_15.Scripts
 {
     public class HealthBoost : Item
     {
+        [Range(1f, 100f)]
         [SerializeField] private float _health;
         
-        public override void Use(Character character)
+        public override void Use(GameObject character)
         {
-            character.AddHealth(_health);
+           //character.AddHealth(_health);
             StartEffect(character.transform.position);
-            DesroyItem();
+            Desroy();
         }
     }
 }

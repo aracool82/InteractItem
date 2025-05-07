@@ -7,47 +7,38 @@ namespace _Project14_15.Scripts
     public class Character : MonoBehaviour
     {
         [SerializeField] private Item _item;
+        
+        [Range(100f,500f)]
         [SerializeField] private float _health;
+        
+        [Range(5f,10f)]
         [SerializeField] private float _speed;
 
         [SerializeField] private Transform _alignmentTransform;
 
+        private bool _canUsedItem;
+        
         public void Move(Vector3 direction)
         {
             transform.position += direction * (_speed * Time.deltaTime);
             transform.rotation = Quaternion.LookRotation(direction);
         }
 
-        public void UseItem()
-        {
-            if (_item == null)
-                Debug.Log("can`t use item");
-            else
-                _item.Use(this);
-
-            _item = null;
-        }
-
         public void AddHealth(float health)
-            => _health += health;
+        {
+            if(health < 0)
+                Debug.LogError("Can`t add negative health");
+            
+            _health += health;
+        }
 
         public void AddSpeed(float speed)
-        => _speed += speed;
-
-        public void TakeItem(Item item)
         {
-            if (item == null)
-            {
-                Debug.LogError("can`t take item. Item is null");
-                return;
-            }
-
-            _item = item;
-            AlignmentItem(item);
+            if (speed < 0)
+                Debug.LogError("Can`t add negative speed");
+            
+             _speed += speed;
         }
-        
-        public bool CanTakeItem()
-            => _item == null;
 
         private void AlignmentItem(Item item)
         {

@@ -4,7 +4,10 @@ namespace _Project14_15.Scripts
 {
     public class Bullet : Item
     {
+        [Range(5f,50f)]
         [SerializeField] private float _speed;
+        
+        [Range(0.5f,5f)]
         [SerializeField] private float _timeToDestroy;
 
         private Vector3 _direction;
@@ -22,13 +25,13 @@ namespace _Project14_15.Scripts
             {
                 ParticleEffect.Stop();
                 ParticleEffect.transform.SetParent(null);
-                DesroyItem();
+                Desroy();
             }
 
             Fly();
         }
 
-        public override void Use(Character character)
+        public override void Use(GameObject character)
         {
             if (transform.IsChildOf(character.transform))
             {

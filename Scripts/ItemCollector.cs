@@ -4,13 +4,14 @@ namespace _Project14_15.Scripts
 {
     public class ItemCollector : MonoBehaviour
     {
-        [SerializeField] private Character _character;
+        [SerializeField] private ItemHolder _itemHolder;
         
         private void OnCollisionEnter(Collision other)
         {
-            if (other.collider.TryGetComponent(out Item item))
-                if(_character.CanTakeItem())
-                    _character.TakeItem(item);
+            // if (other.collider.TryGetComponent(out Item item))
+            //     if(_itemHolder.IsEmpty)
+            //         if(_itemHolder.TryAdd(item))
+                        
         }
     }
 }
