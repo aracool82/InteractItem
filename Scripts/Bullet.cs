@@ -33,15 +33,18 @@ namespace _Project14_15.Scripts
 
         public override void Use(GameObject character)
         {
-            if (transform.IsChildOf(character.transform))
+            if(character.TryGetComponent(out Character characterComponent))
             {
-                _direction = character.transform.forward;
-                
-                transform.SetParent(null);
-                _canFly = true;
-                ParticleEffect.transform.SetParent(transform);
-                
-                StartEffect(transform.position);
+                if (transform.IsChildOf(characterComponent.transform))
+                {
+                    _direction = characterComponent.transform.forward;
+
+                    transform.SetParent(null);
+                    _canFly = true;
+                    ParticleEffect.transform.SetParent(transform);
+
+                    StartEffect(transform.position);
+                }
             }
         }
 

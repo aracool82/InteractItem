@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace _Project14_15.Scripts
 {
@@ -10,9 +9,12 @@ namespace _Project14_15.Scripts
         
         public override void Use(GameObject character)
         {
-           //character.AddHealth(_health);
-            StartEffect(character.transform.position);
-            Desroy();
+            if(character.TryGetComponent(out Character characterComponent))
+            {
+                characterComponent.AddHealth(_health);
+                StartEffect(characterComponent.transform.position);
+                Desroy();
+            }
         }
     }
 }

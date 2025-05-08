@@ -13,8 +13,8 @@ namespace _Project14_15.Scripts
         
         private void Update()
         {
-            //if (Input.GetKeyDown(KeyCode.F))
-                //_character.TryUseItem();
+            if (Input.GetKeyDown(KeyCode.F))
+                _character.TryUseItem();
             
             float moveX = Input.GetAxisRaw(HorizontalAxis);
             float moveZ = Input.GetAxisRaw(VerticalAxis);

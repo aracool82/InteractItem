@@ -5,26 +5,29 @@ namespace _Project14_15.Scripts
     public class ItemHolder : MonoBehaviour
     {
         [SerializeField] private Character _character;
-        
+
         private Item _item;
-        
+
         public bool IsEmpty => _item == null;
-        
-        public bool TryAdd(Item item)
+
+        public void Add(Item item)
         {
             if (item == null)
             {
                 Debug.LogError("Can not Add. Item is null");
-                return false;
+                return;
             }
-            
-            _item = item;
-            return true;
+
+            if (IsEmpty)
+            {
+                _item = item;
+                _character.AlignmentItem(_item);
+            }
         }
 
-        public void Use()
+        public void Use(GameObject character)
         {
-            //_item.Use(_character.gameObject);
+            _item.Use(character);
             _item = null;
         }
     }

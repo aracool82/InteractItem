@@ -9,9 +9,12 @@ namespace _Project14_15.Scripts
         
         public override void Use(GameObject character)
         {
-            //character.AddSpeed(_speed);
-            StartEffect(character.transform.position);
-            Desroy();
+            if(character.TryGetComponent(out Character characterComponent))
+            {
+                characterComponent.AddSpeed(_speed);
+                StartEffect(characterComponent.transform.position);
+                Desroy();
+            }
         }
     }
 }
