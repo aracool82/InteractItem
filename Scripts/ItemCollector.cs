@@ -2,6 +2,8 @@
 
 namespace _Project14_15.Scripts
 {
+    [RequireComponent(typeof(ItemHolder))]
+    
     public class ItemCollector : MonoBehaviour
     {
         [SerializeField] private ItemHolder _itemHolder;

@@ -2,7 +2,9 @@ using UnityEngine;
 
 namespace _Project14_15.Scripts
 {
-    [RequireComponent(typeof(Rigidbody), typeof(BoxCollider), typeof(ItemCollector))]
+    [RequireComponent(typeof(Rigidbody), typeof(BoxCollider))]
+    [RequireComponent(typeof(UserInput), typeof(ItemCollector))]
+    
     public class Character : MonoBehaviour
     {
         [Range(100f, 500f)] [SerializeField] private float _health;
