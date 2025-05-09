@@ -3,7 +3,6 @@ using UnityEngine;
 namespace _Project14_15.Scripts
 {
     [RequireComponent(typeof(Rigidbody), typeof(BoxCollider))]
-    [RequireComponent(typeof(UserInput), typeof(ItemCollector))]
     
     public class Character : MonoBehaviour
     {
